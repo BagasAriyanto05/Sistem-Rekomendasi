@@ -237,7 +237,7 @@ Pada proyek ini, untuk mengukur kinerja model dengan pendekatan Deep Learning un
 
 $$ RMSE = \sqrt \frac{\sum \limits_{t=1}^{n} (A_t-F_t)^2}{n} $$
 
-Berikut merupakan visualisai metrik pada proses training terhadap model Deep Learning sebelumnya :
+Gambar 12 merupakan visualisai metrik pada proses training terhadap model Deep Learning sebelumnya :
 
 ![image](https://user-images.githubusercontent.com/68520848/186796350-02477b92-6456-490e-9535-356223497e18.png)
 
