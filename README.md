@@ -265,17 +265,23 @@ Pada proyek ini, model yang dibuat merupakan sistem rekomendasi untuk merekomend
 
 ## Evaluation
 
-Pada proyek ini, untuk mengukur kinerja model dengan pendekatan Deep Learning untuk sistem rekomendasi digunakan Root Mean Squared Error (RMSE) sebagai metrics evaluationnya. Root Mean Square Error (RMSE) adalah  metode pengukuran dengan mengukur perbedaan nilai dari prediksi sebuah model sebagai estimasi atas nilai yang diobservasi. Root Mean Square Error adalah hasil dari akar kuadrat Mean Square Error. Keakuratan metode estimasi kesalahan pengukuran ditandai dengan adanya nilai RMSE yang kecil. Metode estimasi yang mempunyai Root Mean Square Error (RMSE) lebih kecil dikatakan lebih akurat daripada metode estimasi yang mempunyai Root Mean Square Error (RMSE) lebih besar. Cara Menghitung Root Mean Square Error (RMSE) adalah dengan mengurangi nilai aktual dengan nilai prediksi kemudian dikuadratkan dan dijumlahkan keseluruhan hasilnya kemudian dibagi dengan banyaknya data. Hasil perhitungan tersebut selanjutnya dihitung kembali untuk mencari nilai dari akar kuadrat [[4](https://www.khoiri.com/2020/12/cara-menghitung-root-mean-square-error-rmse.html)]. Berikut merupakan persamaan untuk menghitung RSME :
+Pada proyek ini, untuk mengukur kinerja sistem rekomendasi digunakan Root Mean Squared Error (RMSE) sebagai metrics evaluationnya. Root Mean Square Error (RMSE) adalah  metode pengukuran dengan mengukur perbedaan nilai dari prediksi sebuah model sebagai estimasi atas nilai yang diobservasi. Root Mean Square Error adalah hasil dari akar kuadrat Mean Square Error. Keakuratan metode estimasi kesalahan pengukuran ditandai dengan adanya nilai RMSE yang kecil. Metode estimasi yang mempunyai Root Mean Square Error (RMSE) lebih kecil dikatakan lebih akurat daripada metode estimasi yang mempunyai Root Mean Square Error (RMSE) lebih besar. Cara Menghitung Root Mean Square Error (RMSE) adalah dengan mengurangi nilai aktual dengan nilai prediksi kemudian dikuadratkan dan dijumlahkan keseluruhan hasilnya kemudian dibagi dengan banyaknya data. Hasil perhitungan tersebut selanjutnya dihitung kembali untuk mencari nilai dari akar kuadrat [[4](https://www.khoiri.com/2020/12/cara-menghitung-root-mean-square-error-rmse.html)]. Berikut merupakan persamaan untuk menghitung RSME :
 
 $$ RMSE = \sqrt \frac{\sum \limits_{t=1}^{n} (A_t-F_t)^2}{n} $$
 
-Gambar 12 merupakan visualisai metrik pada proses training terhadap model Deep Learning sebelumnya :
+
+
+Gambar 10 dan gambar 11 merupakan visualisai metrik pada proses training sebelumnya :
+
+![Sistem rekomendasi - knn](https://user-images.githubusercontent.com/92978028/199872389-16213705-6769-4898-9c7b-f2ee99e4c4a0.png)
+
+Gambar 10. Model matrik K-nn
 
 ![image](https://user-images.githubusercontent.com/68520848/186796350-02477b92-6456-490e-9535-356223497e18.png)
 
-Gambar 12. Model matrik
+Gambar 11. Model matrik Deep Learning
 
-Pada proses training model cukup smooth dan model konvergen pada epochs sekitar 30. Dari proses ini, kita memperoleh nilai error akhir sebesar sekitar 0.3407 dan error pada data validasi sebesar 0.3491. Nilai tersebut cukup bagus untuk sistem rekomendasi. 
+Pada proses training model cukup smooth dan model konvergen pada epochs sekitar 25 dan 30. Dari proses ini, kita memperoleh nilai error akhir sebesar sekitar 0.3407 dan error pada data validasi sebesar 0.3491. Nilai tersebut cukup bagus untuk sistem rekomendasi. 
 
 ## Conclusion
 
