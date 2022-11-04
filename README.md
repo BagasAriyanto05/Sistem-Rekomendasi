@@ -212,22 +212,54 @@ Berikut ini merupakan tahapan-tahapan dalam melakukan persiapan data :
 Pada proyek ini, model yang dibuat merupakan sistem rekomendasi untuk merekomendasikan buku kepada pengguna. Pada proyek ini sistem rekomendasi yang dibuat menggunakan teknik _collaborative filtering_ dengan menggunakan 2 pendekatan yaitu pendekatan Item-Based dengan algoritma K-Nearest Neighbor dan pendekatan Deep learning atau Neural Network.
 
 -   **Dengan pendekatan Item-Based dengan algoritma K-Nearest Neighbor.**
-    <br> Untuk membangun model ini, digunakan fungsi [NearestNeighbor](https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.NearestNeighbors.html) dari sklearn dengan parameter metriksnya yakni 'cosine' sehingga algoritma akan menghitung kesamaan cosinus antara vektor rating dan juga parameter algoritma yang digunakan untuk menghitung tetangga terdekat adalah 'brute'. Kemudian fungsi tersebut di inisialisasikan sebagai model_knn yang selanjutnya dilakukan fitting terhadap data yang berupa sparse matrix. Setelah itu dibuat fungsi recomend_book untuk memberikan rekomendasi terhadap suatu judul buku. Gambar 10 merupakan hasil dari rekomendasinya :
+    <br> Untuk membangun model ini, digunakan fungsi [NearestNeighbor](https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.NearestNeighbors.html) dari sklearn dengan parameter metriksnya yakni 'cosine' sehingga algoritma akan menghitung kesamaan cosinus antara vektor rating dan juga parameter algoritma yang digunakan untuk menghitung tetangga terdekat adalah 'brute'. Kemudian fungsi tersebut di inisialisasikan sebagai model_knn yang selanjutnya dilakukan fitting terhadap data yang berupa sparse matrix. Setelah itu dibuat fungsi recomend_book untuk memberikan rekomendasi terhadap suatu judul buku. Tabel 1 merupakan hasil dari rekomendasinya :
     
-    ![image](https://user-images.githubusercontent.com/68520848/186794492-85b66511-447e-42f3-a9ed-c40b351a1acc.png)
+    Tabel 1. Hasil rekomendasi
     
-    Gambar 10. Hasil rekomendasi
-    
+    | Tier | Title       | Distance |
+    |------|-------------|----------|
+    | 0    | luckys lady |0.9162800364263406|
+    | 1    | come the spring clayborne brothers | 0.9114173134942752 |
+    | 2    | the wedding | 0.9038276080935737 |
+    | 3    | this heart of mine avon romance | 0.8985689272966876 |
+    | 4    | the notebook | 0.8960505573027107 |
+    | 5    | message in a bottle | 0.8808803747806075 |
+    | 6    | the guardian | 0.8787461786558258 |
+    | 7    | a bend in the road | 0.8716456703951239 |
+    | 8    | nights in rodanthe | 0.8631070098517125 |
+    | 9    | a walk to remember | 0.8082340103878292 |
+        
     Dengan model K-Nearest Neighbor, kita mendapatkan 10 buku hasil rekomendasi terhadap buku dengan judul 'the rescue' dengan distance > 0.80.
 
 -   **Dengan pendekatan Deep learning atau Neural Network.**
     <br> Untuk membangun model ini, digunakan metode Deep Learning atau Neural Network. Model yang dbangun akan menghitung skor kecocokan antara pengguna dan buku dengan teknik embedding. Pertama, kita melakukan proses embedding terhadap data user dan buku. Selanjutnya, lakukan operasi perkalian dot product antara embedding user dan buku. Kemudian, kita juga dapat menambahkan bias untuk setiap user dan buku. Skor kecocokan ditetapkan dalam skala [0,1] dengan fungsi aktivasi sigmoid. Model dengan pendekatan Deep Learning ini dibangun dengan membuat class RecommenderNet dengan [keras Model class](https://keras.io/api/models/model/). Selanjutnya, lakukan proses compile terhadap model. Model yang dibangun menggunakan Binary Crossentropy untuk menghitung loss function, Adam (Adaptive Moment Estimation) sebagai optimizer, dan root mean squared error (RMSE) sebagai metrics evaluation. Setelah itu lakukan proses training terhadap model.
     
-    Untuk mendapatkan rekomendasi resto, pertama kita ambil sampel user secara acak dan definisikan variabel books_not_read yang merupakan daftar buku yang belum pernah dibaca oleh pengguna, daftar books_not_read inilah yang akan menjadi buku yang kita rekomendasikan. Variabel books_not_read diperoleh dengan menggunakan operator bitwise (~) pada variabel books_read_by_user. Sebelumnya, pengguna telah memberi rating pada beberapa buku yang telah mereka baca. Kita menggunakan rating ini untuk membuat rekomendasi buku yang mungkin cocok untuk pengguna. Kemudian, untuk memperoleh rekomendasi buku, gunakan fungsi model.predict() dari library Keras. Pada gambar 11 adalah hasil rekomendasinya :
+    Untuk mendapatkan rekomendasi resto, pertama kita ambil sampel user secara acak dan definisikan variabel books_not_read yang merupakan daftar buku yang belum pernah dibaca oleh pengguna, daftar books_not_read inilah yang akan menjadi buku yang kita rekomendasikan. Variabel books_not_read diperoleh dengan menggunakan operator bitwise (~) pada variabel books_read_by_user. Sebelumnya, pengguna telah memberi rating pada beberapa buku yang telah mereka baca. Kita menggunakan rating ini untuk membuat rekomendasi buku yang mungkin cocok untuk pengguna. Kemudian, untuk memperoleh rekomendasi buku, gunakan fungsi model.predict() dari library Keras. Pada Tabel 2 adalah data rating dan pada Tabel 3 adalah hasil rekomendasinya :
     
-    ![image](https://user-images.githubusercontent.com/68520848/186796305-aa31b709-ee75-4170-bfb4-37c3c190496c.png)
+     Tabel 2. Rating dari user 271176
     
-    Gambar 11. Hasil rekomendasi dari user 271176
+     | Tier | Title       | Rating/ Detail |
+     |------|-------------|----------|
+     | 0    | the hobbit  the enchanting prelude to the lord of the rings | 9 |
+     | 1    | the fellowship of the ring the lord of the rings part | ['Fiction'] |
+     | 2    | the return of the king the lord of the rings part | 9 |
+     | 3    | a fire upon the deep zones of thought | ['Fiction'] |
+     | 4    | dragonflight | 9 |
+     
+     Tabel 3. Hasil rekomendasi dari user 271176
+     
+     | Tier | Title       | Rating/ Detail |
+     |------|-------------|----------|
+     | 0    | the lovely bones a novel | 9 |
+     | 1    | girl with a pearl earring | ['Fiction'] |
+     | 2    | harry potter and the prisoner of azkaban book  | 9 |
+     | 3    | the da vinci code | ['Fiction'] |
+     | 4    | the red tent bestselling backlist | ['Fiction'] |
+     | 5    | harry potter and the sorcerers stone harry potter paperback | ['Juvenile Nonfiction'] |
+     | 6    | harry potter and the goblet of fire book | ['Juvenile Nonfiction'] |
+     | 7    | falling up | ['Juvenile Nonfiction'] |
+     | 8    | free | ['Fiction'] |
+     | 9    | the secret life of bees | ['Fiction'] |
     
     Dengan pendekatan Deep Learning, kita dapat melihat top 10 buku yang direkomendasikan untuk user dengan id 219951. Dari beberapa buku rekomendasi menyediakan kategori 'Fiction', '9', dan 'Juvenile Fiction' yang sesuai dengan rating user. Kita memperoleh 1 rekomendasi buku dengan kategori 'Fiction', 6 rekomendasi buku dengan kategori '9' dan 3 rekomendasi buku dengan kategori 'Juvenile Fiction'.
 
@@ -243,13 +275,7 @@ Gambar 12 merupakan visualisai metrik pada proses training terhadap model Deep L
 
 Gambar 12. Model matrik
 
-Pada Gambar 12 dapat dilihat model cukup smooth dan model konvergen pada epochs sekitar 30. Dari proses ini, saya memperoleh nilai error akhir sebesar sekitar 0.3407 dan error pada data validasi sebesar 0.3491. Nilai tersebut cukup bagus untuk sistem rekomendasi. 
-
-![image](https://user-images.githubusercontent.com/68520848/186797600-2303392e-5371-45ce-8ccf-738f941d73de.png)
-
-Gambar 13. Evaluasi model
-
-Kemudian setelah dilakukan evaluasi menggunakan seluruh data, model memperoleh nilai error sebesar 0.3702 ditunjukan oleh Gambar 13.
+Pada proses training model cukup smooth dan model konvergen pada epochs sekitar 30. Dari proses ini, kita memperoleh nilai error akhir sebesar sekitar 0.3407 dan error pada data validasi sebesar 0.3491. Nilai tersebut cukup bagus untuk sistem rekomendasi. 
 
 ## Conclusion
 
